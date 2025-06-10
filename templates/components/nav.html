@@ -1,0 +1,16 @@
+<nav>
+    <div class="title">
+        <h1><a href="/">Ciel</a></h1>
+    </div>
+    {% if username %}
+        <div class="session">
+            <a href="#">Logged in as: {{ username }}</a>
+            <a href="/logout">Log Out</a>
+        </div>
+    {% else %}
+        <div class="session">
+            <a href="/login">Log In</a>
+            <a href="/register">Register</a>
+        </div>
+    {% endif %}
+</nav>

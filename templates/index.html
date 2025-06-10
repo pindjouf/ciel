@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <main>
+        <div class="card">
+            <h2 style="color: var(--gruvbox-bright-yellow); margin-bottom: 1.5rem; text-shadow: 0 0 20px rgba(250, 189, 47, 0.3);">Welcome to Ciel</h2>
+            {% if username %}
+                <p>You can now work on exploiting these vulnerabilities:</p>
+                <ul>
+                    {% for page in vuln_pages %}
+                        <li><a href="{{ page.link }}">{{ page.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Log in to start working on exploiting web app vulnerabilities!</p>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

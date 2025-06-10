@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <main>
+        <div class="card">
+            <h2 style="color: var(--gruvbox-bright-yellow); margin-bottom: 1.5rem; text-shadow: 0 0 20px rgba(250, 189, 47, 0.3);">Log In</h2>
+            <form action="/login" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username">
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+                
+                <input type="submit" value="Log In">
+            </form>
+            
+            {% if result %}
+                {% for value in result %}
+                    <p class="success">We found {{ value[0] }}: {{ value[1] }}</p>
+                {% endfor %}
+            {% elif error %}
+                <br>
+                <p class="error">{{ error }}</p>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

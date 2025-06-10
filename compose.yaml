@@ -1,0 +1,6 @@
+services:
+  web:
+    container_name: ciel
+    build: .
+    ports:
+      - "8000:5000"
