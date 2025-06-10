@@ -80,13 +80,16 @@ def os():
         username = session['username']
         if request.method == "POST":
             command = request.form['command'].split()
-            result = subprocess.run(
-                command,
-                capture_output=True,
-                text=True
-            )
-            command = ' '.join(command)
-            return render_template('os.html', command=command, result=result.stdout, username=username)
+            if command:
+                result = subprocess.run(
+                    command,
+                    capture_output=True,
+                    text=True
+                )
+                command = ' '.join(command)
+                return render_template('os.html', command=command, result=result.stdout, username=username)
+            else:
+                return render_template('os.html', username=username)
         else:
             return render_template('os.html', username=username)
     else:
