@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <main>
+        <div class="card">
+            <h2 style="color: var(--gruvbox-bright-yellow); margin-bottom: 1.5rem; text-shadow: 0 0 20px rgba(250, 189, 47, 0.3);">SSTI here!</h2>
+                {% if username %}
+                    <p>Hi {{ template }}</p>
+                {% else %}
+                    <p>Hi!</p>
+                {% endif %}
+        </div>
+    </main>
+{% endblock %}

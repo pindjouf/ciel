@@ -1,12 +1,13 @@
 import subprocess
 import sqlite3
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, render_template_string, request, session, redirect, url_for
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 vuln_pages = [
-    {"title": "OS Command injection", "link": "/os"}
+    {"title": "OS Command injection", "link": "/os"},
+    {"title": "SSTI", "link": "/ssti"}
 ]
 
 @app.route("/")
@@ -94,3 +95,15 @@ def os():
             return render_template('os.html', username=username)
     else:
         return redirect(url_for('index'))
+
+@app.route("/ssti")
+def ssti():
+    if 'username' in session:
+        username = session['username']
+        name = request.args.get('name')
+        template = f"{{ {name} }}!"
+        template = render_template_string(template)
+        return render_template('ssti.html', username=username, template=template)
+
+if __name__ == "__main__":
+    app.run()
